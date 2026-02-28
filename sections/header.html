@@ -1,0 +1,44 @@
+<header id="main-header" style="position:fixed;top:0;left:0;right:0;z-index:100;transition:all .3s">
+  <div style="max-width:1180px;margin:0 auto;padding:0 28px;display:flex;align-items:center;justify-content:space-between;height:68px">
+    <!-- Logos -->
+    <div style="display:flex;align-items:center;gap:12px">
+      <img src="https://flxr2.com/Flexeet/logo%20quick%20pick.png" alt="Quick Pick" style="height:36px;object-fit:contain" onerror="this.style.display='none'" />
+      <div style="width:1px;height:24px;background:#E0D8CE"></div>
+      <img src="https://flxr2.com/Flexeet/Logo%20Flexeet.png" alt="Flexeet" style="height:28px;object-fit:contain" onerror="this.style.display='none'" />
+    </div>
+    <!-- Desktop Nav -->
+    <nav class="hide-mobile" style="display:flex;gap:2px;align-items:center">
+      <button data-scroll-to="pain"     class="nav-link">Masalah</button>
+      <button data-scroll-to="modules"  class="nav-link">Modul</button>
+      <button data-scroll-to="demo"     class="nav-link">Demo</button>
+      <button data-scroll-to="paket"    class="nav-link">Harga</button>
+      <button data-scroll-to="timeline" class="nav-link">Timeline</button>
+    </nav>
+    <!-- CTA -->
+    <div class="hide-mobile">
+      <a href="https://wa.me/6287796074183" target="_blank" rel="noreferrer" class="btn-primary btn-accent" style="font-size:14px;padding:9px 20px;text-decoration:none">
+        Hubungi Zainal
+      </a>
+    </div>
+    <!-- Hamburger -->
+    <button id="burger-btn" class="show-mobile" style="background:none;border:none;cursor:pointer;padding:4px;align-items:center">
+      <i data-lucide="menu" style="width:22px;height:22px;color:#2D1E0F"></i>
+    </button>
+  </div>
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" style="display:none;background:#fff;border-top:1px solid #E0D8CE;padding:8px 16px 16px">
+    <button data-scroll-to="pain"     class="nav-mobile-link">Masalah</button>
+    <button data-scroll-to="modules"  class="nav-mobile-link">Modul</button>
+    <button data-scroll-to="demo"     class="nav-mobile-link">Demo</button>
+    <button data-scroll-to="paket"    class="nav-mobile-link">Harga</button>
+    <button data-scroll-to="timeline" class="nav-mobile-link">Timeline</button>
+    <a href="https://wa.me/6287796074183" target="_blank" rel="noreferrer" class="btn-primary btn-accent" style="display:block;margin-top:10px;text-align:center;text-decoration:none">
+      Hubungi Zainal
+    </a>
+  </div>
+</header>
+<style>
+  .nav-link { background:none;border:none;padding:8px 16px;font-size:14px;font-weight:500;color:#7A6A5A;cursor:pointer;border-radius:8px;font-family:'DM Sans',sans-serif;transition:color .2s,background .2s; }
+  .nav-link:hover { color:#2D1E0F;background:#EDE8E1; }
+  .nav-mobile-link { display:block;width:100%;text-align:left;background:none;border:none;padding:12px 8px;font-size:15px;cursor:pointer;font-family:'DM Sans',sans-serif;color:#2D1E0F;border-bottom:1px solid #F1F5F9; }
+</style>

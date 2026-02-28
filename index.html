@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Flexeet × Quick Pick — Proposal Konfidensial</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary:  '#2D1E0F',
+            accent:   '#D4621A',
+            accent2:  '#8B6914',
+            muted:    '#7A6A5A',
+            soft:     '#EDE8E1',
+            brd:      '#E0D8CE',
+            bg:       '#F7F3EE',
+            green:    '#1E6B3C',
+            'green-bg': '#E8F5EE',
+          },
+          fontFamily: {
+            heading: ['"Bricolage Grotesque"', 'sans-serif'],
+            body:    ['"DM Sans"', 'sans-serif'],
+          },
+        },
+      },
+    }
+  </script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: #F7F3EE; color: #2D1E0F; line-height: 1.65; -webkit-font-smoothing: antialiased; }
+    h1,h2,h3,h4,h5 { font-family: 'Bricolage Grotesque', sans-serif; line-height: 1.2; }
+
+    /* Auth gate */
+    #auth-gate { background: linear-gradient(135deg, #1C1612 0%, #2D1E0F 50%, #1C1612 100%); }
+
+    /* Glass nav */
+    .glass-nav { background: rgba(247,243,238,0.92) !important; backdrop-filter: blur(12px); box-shadow: 0 1px 0 rgba(0,0,0,0.06); }
+
+    /* Scroll reveal */
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-left { opacity: 0; transform: translateX(-28px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal-left.visible { opacity: 1; transform: translateX(0); }
+    .reveal-right { opacity: 0; transform: translateX(28px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal-right.visible { opacity: 1; transform: translateX(0); }
+
+    /* Animations */
+    @keyframes fadeInUp   { from { opacity:0; transform:translateY(28px) } to { opacity:1; transform:translateY(0) } }
+    @keyframes blob       { 0%,100%{transform:scale(1) translate(0,0)} 33%{transform:scale(1.08) translate(18px,-12px)} 66%{transform:scale(.94) translate(-12px,16px)} }
+    @keyframes bounce-dot { 0%,80%,100%{transform:translateY(0)} 40%{transform:translateY(-6px)} }
+    @keyframes spin-slow  { to { transform: rotate(360deg) } }
+    @keyframes pulse-soft { 0%,100%{opacity:1} 50%{opacity:.6} }
+    .anim-up   { animation: fadeInUp 0.6s ease both; }
+    .anim-blob { animation: blob 7s infinite ease-in-out; }
+    .delay-1   { animation-delay: 0.1s; }
+    .delay-2   { animation-delay: 0.2s; }
+    .delay-3   { animation-delay: 0.3s; }
+    .delay-4   { animation-delay: 0.4s; }
+
+    /* Mobile helpers */
+    .show-mobile { display: none !important; }
+    @media (max-width: 768px) {
+      .hide-mobile { display: none !important; }
+      .show-mobile { display: flex !important; }
+      .stack-mobile { flex-direction: column !important; }
+      .grid-mobile-1 { grid-template-columns: 1fr !important; }
+    }
+
+    /* Card */
+    .card { background: #fff; border: 1px solid #E0D8CE; border-radius: 14px; }
+
+    /* Pill */
+    .pill { display: inline-flex; align-items: center; background: #F7F3EE; border: 1px solid #E0D8CE; border-radius: 100px; padding: 6px 14px; font-size: 12px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: #7A6A5A; margin-bottom: 16px; }
+    .pill-accent { background: #FEF3E8; border-color: #F9CDA8; color: #D4621A; }
+
+    /* Btn primary */
+    .btn-primary { display: inline-flex; align-items: center; gap: 8px; background: #2D1E0F; color: #fff; font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 14px; padding: 12px 24px; border-radius: 10px; border: none; cursor: pointer; transition: background .2s, transform .15s; text-decoration: none; }
+    .btn-primary:hover { background: #4a3520; transform: translateY(-1px); }
+    .btn-accent { background: #D4621A; }
+    .btn-accent:hover { background: #b8541a; }
+
+    /* Section spacing */
+    .section { padding: 80px 0; }
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+    /* Tab active */
+    .tab-btn { transition: all .2s; }
+    .tab-btn.active { color: #fff !important; }
+
+    /* Chat */
+    #chat-messages { height: 300px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; padding: 16px; background: #F8F7FF; }
+
+    /* Timeline connector */
+    .phase-connector { height: 2px; flex: 1; transition: background .4s; }
+
+    /* Typing dots */
+    .dot { width: 6px; height: 6px; border-radius: 50%; background: #C7D2FE; animation: bounce-dot 1.2s ease-in-out infinite; }
+    .dot:nth-child(2) { animation-delay: .2s; }
+    .dot:nth-child(3) { animation-delay: .4s; }
+
+    /* Approach active border */
+    .approach-card { transition: border-color .3s, box-shadow .3s; }
+    .approach-card.active { box-shadow: 0 0 0 2px currentColor; }
+  </style>
+</head>
+<body>
+
+  <!-- ═══ AUTH GATE ═══ -->
+  <div id="auth-gate" class="fixed inset-0 z-[200] flex items-center justify-center">
+    <div class="relative w-full max-w-sm mx-4">
+      <div style="background:rgba(255,255,255,0.07);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.15);border-radius:20px;padding:40px 32px;text-align:center">
+        <!-- Logo -->
+        <div class="flex items-center justify-center gap-3 mb-6">
+          <img src="https://flxr2.com/Flexeet/Logo%20Flexeet.png" alt="Flexeet" style="height:32px;object-fit:contain;filter:brightness(0) invert(1)" />
+        </div>
+        <!-- Badge -->
+        <div style="display:inline-flex;align-items:center;gap:6px;background:rgba(239,68,68,0.2);color:#fca5a5;font-size:11px;font-weight:700;padding:6px 14px;border-radius:100px;margin-bottom:16px;letter-spacing:.06em;text-transform:uppercase">
+          🔒 Dokumen Konfidensial
+        </div>
+        <h2 style="color:#fff;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:20px;margin-bottom:6px">Proposal Quick Pick</h2>
+        <p style="color:rgba(255,255,255,.45);font-size:13px;margin-bottom:24px">Masukkan kode akses untuk membuka dokumen ini</p>
+        <!-- Input -->
+        <input id="pwd-input" type="password" placeholder="Kode akses..."
+          style="width:100%;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.2);border-radius:12px;padding:12px 16px;color:#fff;font-size:14px;font-family:'DM Sans',sans-serif;outline:none;margin-bottom:10px;transition:border .2s"
+          onfocus="this.style.borderColor='#D4621A'"
+          onblur="this.style.borderColor='rgba(255,255,255,0.2)'"
+          onkeydown="if(event.key==='Enter') window.checkAuth()" />
+        <!-- Error msg -->
+        <div id="auth-error" style="display:none;color:#fca5a5;font-size:12px;margin-bottom:10px">
+          Kode akses tidak valid. Coba lagi.
+        </div>
+        <!-- Button -->
+        <button onclick="window.checkAuth()"
+          style="width:100%;background:#D4621A;color:#fff;font-family:'DM Sans',sans-serif;font-weight:600;font-size:14px;padding:13px 24px;border-radius:12px;border:none;cursor:pointer;transition:background .2s;margin-bottom:20px"
+          onmouseover="this.style.background='#b8541a'" onmouseout="this.style.background='#D4621A'">
+          Buka Proposal →
+        </button>
+        <p style="color:rgba(255,255,255,.2);font-size:11px">Flexeet AI & Automation · Proposal Februari 2026</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ MAIN APP ═══ -->
+  <div id="app" style="display:none"></div>
+
+  <!-- Scripts -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+  <script src="js/animations.js"></script>
+  <script src="js/approach.js"></script>
+  <script src="js/timeline.js"></script>
+  <script src="js/demo-m1.js"></script>
+  <script src="js/demo-m2.js"></script>
+  <script src="js/demo-m3.js"></script>
+  <script src="js/demo-m4.js"></script>
+  <script src="js/loader.js"></script>
+  <script src="js/auth.js"></script>
+</body>
+</html>
